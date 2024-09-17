@@ -5,12 +5,8 @@ from tkinter import ttk
 from customtkinter import (CTk,
                            CTkTextbox,
                            CTkOptionMenu)
-
 from src.bases.converter import TextConverter
 from src.languages import greek_polytonic, latin
-
-
-__all__ = ["ConverterGUI"]
 
 
 class ConverterGUI(CTk):
@@ -31,13 +27,15 @@ class ConverterGUI(CTk):
         self.option_menu.grid(column=0, row=0, sticky='W')
 
         # B: Unconverted text input box
-        self.input = CTkTextbox(self, width=self.winfo_screenwidth() / 2, height=self.winfo_screenheight() / 8)
+        self.input = CTkTextbox(self, width=self.winfo_screenwidth(
+        ) / 2, height=self.winfo_screenheight() / 8)
         self.input.bind("<KeyRelease>", self.__update_text)
         self.input.configure(font=("times new roman", 26))
         self.input.grid(column=0, row=1)
 
         # C: Converted text output box
-        self.output = CTkTextbox(self, wrap="word", width=self.winfo_screenwidth() / 2, height=self.winfo_screenheight() / 8, state="disabled")
+        self.output = CTkTextbox(self, wrap="word", width=self.winfo_screenwidth(
+        ) / 2, height=self.winfo_screenheight() / 8, state="disabled")
         self.output.configure(font=("times new roman", 26))
         self.output.grid(column=0, row=3)
 
@@ -59,7 +57,6 @@ class ConverterGUI(CTk):
         self.output.delete("0.0", "end")
         self.output.insert("0.0", conversion)
         self.output.configure(state="disabled")
-
 
     def run(self) -> None:
         '''Start the app.'''
