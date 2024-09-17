@@ -7,7 +7,9 @@ symbols easier.
 
 Some letters can accept multiple diacritics, but most not. Sometimes a 
 diacritic is only found on one letter, so it might piggyback off of another
-symbol if it doesn't conflict. In general, the symbols are:
+symbol if it doesn't conflict. 
+
+In Latin text, the symbols are:
 
 ```
     /   Acute accent
@@ -31,3 +33,12 @@ symbol if it doesn't conflict. In general, the symbols are:
     !   Special phonological symbol
 ```
 
+In Greek text, the symbols are:
+
+```
+    /   Acute accent
+    \   Grave accent 
+    =   Circumflex
+    |   Iota subscript
+    +   Diaeresis
+```
