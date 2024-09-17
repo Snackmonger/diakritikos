@@ -6,8 +6,9 @@ BaseCharacter: TypeAlias = str
 DiacriticalMarks: TypeAlias = tuple[str, ...]
 MarkedCharacter: TypeAlias = tuple[BaseCharacter, DiacriticalMarks]
 
-class TextConverter:
+class TextConverter():
     '''Common parent of text converters used by the program.'''
+
 
 class CombinationConverter(TextConverter):
     """
@@ -19,6 +20,9 @@ class CombinationConverter(TextConverter):
         "ᾅ": ("a", ("|", "(", "/")),
 
         This entry would match any of a|(/ or a(|/ or a/|(, etc.
+
+    Thereby, diacritical marks can be added to a character in any order but
+    they will always map to the same precomposed symbol.
     """
     def __init__(self, conversions: dict[str, MarkedCharacter]) -> None:
         '''
@@ -39,6 +43,19 @@ class CombinationConverter(TextConverter):
         self.__conversions = conversions_
 
     def convert(self, text: str) -> str:
+        '''
+        Convert a block of text according to the initialized paradigms.
+
+        Parameters
+        ----------
+        text : str
+            The text to be converted.
+
+        Returns
+        -------
+        str
+            The converted text.
+        '''
         text = " " + text + " "
         conversions: list[str] = list(self.__conversions.keys())
         conversions.sort(reverse=True)
