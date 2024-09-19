@@ -1,10 +1,12 @@
 # type:ignore  -- customtkinter has no stubfile
 """Simple GUI to allow the user to try out various conversion paradigms."""
 
-from tkinter import ttk
+from tkinter import Toplevel, ttk
 from customtkinter import (CTk,
                            CTkTextbox,
-                           CTkOptionMenu)
+                           CTkOptionMenu,
+                           CTkButton, 
+                           CTkScrollableFrame)
 from src.bases.converter import TextConverter
 from src.languages import greek_polytonic, latin
 
@@ -21,25 +23,25 @@ class ConverterGUI(CTk):
         }
         self.selected_converter: str = list(self.converters)[0]
 
-        # A: Dropdown alphabet selector
+        # Dropdown alphabet selector
         self.option_menu = CTkOptionMenu(
             self, values=list(self.converters), command=self.__change_converter)
         self.option_menu.grid(column=0, row=0, sticky='W')
 
-        # B: Unconverted text input box
+        # Unconverted text input box
         self.input = CTkTextbox(self, width=self.winfo_screenwidth(
         ) / 2, height=self.winfo_screenheight() / 8)
         self.input.bind("<KeyRelease>", self.__update_text)
         self.input.configure(font=("times new roman", 26))
         self.input.grid(column=0, row=1)
 
-        # C: Converted text output box
+        # Converted text output box
         self.output = CTkTextbox(self, wrap="word", width=self.winfo_screenwidth(
         ) / 2, height=self.winfo_screenheight() / 8, state="disabled")
         self.output.configure(font=("times new roman", 26))
         self.output.grid(column=0, row=3)
 
-        # D: Input/Output divider
+        # Input/Output divider
         self.sep = ttk.Separator(self)
         self.sep.grid(column=0, row=2, sticky="NSEW")
 
@@ -57,6 +59,8 @@ class ConverterGUI(CTk):
         self.output.delete("0.0", "end")
         self.output.insert("0.0", conversion)
         self.output.configure(state="disabled")
+
+
 
     def run(self) -> None:
         '''Start the app.'''

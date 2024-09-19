@@ -63,6 +63,7 @@ class CombinationConverter(TextConverter):
             text =  text.replace(conversion, self.__conversions[conversion])
         return text.strip()
 
+
     def __summarize(self, character: MarkedCharacter) -> tuple[str, ...]:
         base_character = character[0]
         diacritical_marks = character[1]

@@ -22,7 +22,7 @@ In Latin text, the symbols are:
     _   Macron
     -   Breve
     @   Dot under letter
-    \*   Dot over letter
+    *   Dot over letter
     |   Line through letter, or ligature
     ]   Left-facing hook/cedilla
     [   Right-facing hook/cedilla
